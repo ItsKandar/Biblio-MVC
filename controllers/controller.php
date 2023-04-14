@@ -28,10 +28,10 @@ switch ($action) {
     case 'delete':
         $bookId = $_GET['id'];
         deleteBook($bookId);
-        header('Location: ../views/page2.php');
+        header('Location: ../views/index.php?action=page2');
         break;
     default:
-        require_once '../views/page1.php';
+        require_once '../views/index.php?action=page1';
         break;
 }
 ?>
