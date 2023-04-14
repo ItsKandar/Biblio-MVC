@@ -22,7 +22,8 @@ switch ($action) {
             header('Location: controller.php?action=page2');
         } else {
             $book = getBookById($bookId);
-            require_once '../views/modifyBook.php';
+            header('Location: ../views/index.php?action=page2');
+            break;
         }
         break;
     case 'delete':

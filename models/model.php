@@ -36,7 +36,7 @@ function modifyBook($id, $name, $author, $year, $summary) {
 
 function deleteBook($id) {
     $pdo = connectDb();
-    $query = "DELETE FROM books WHERE id = :id";
+    $query = "DELETE FROM books WHERE id = '. $id . '";
     $stmt = $pdo->prepare($query);
     $stmt->execute(['id' => $id]);
 }
