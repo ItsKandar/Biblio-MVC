@@ -1,7 +1,7 @@
 <?php
 require_once 'header.php';
 ?>
-    <h1>Page d'accueil</h1>
+    <h1>Accueil</h1>
 </body>
 </html>
 <body>

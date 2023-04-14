@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Librairie</title>
     <style>
+        * {
+            color : white;
+            text-align: center;
+        }
         body {
             background-image: url('banner.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        input[type="text"], input[type="number"], textarea {
+            color: black;
         }
     </style>
 </head>

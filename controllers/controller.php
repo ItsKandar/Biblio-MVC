@@ -1,19 +1,19 @@
 <?php
-require_once 'models/model.php';
-require_once 'views/header.php';
+require_once '../models/model.php';
+require_once '../views/header.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'page1';
 
 switch ($action) {
     case 'page1':
-        require_once 'views/page1.php';
+        require_once '../views/page1.php';
         break;
     case 'page2':
         $books = getAllBooks();
-        require_once 'views/page2.php';
+        require_once '../views/page2.php';
         break;
     case 'page3':
-        require_once 'views/page3.php';
+        require_once '../views/page3.php';
         break;
     case 'modify':
         $bookId = $_GET['id'];
@@ -22,16 +22,16 @@ switch ($action) {
             header('Location: controller.php?action=page2');
         } else {
             $book = getBookById($bookId);
-            require_once 'views/modifyBook.php';
+            require_once '../views/modifyBook.php';
         }
         break;
     case 'delete':
         $bookId = $_GET['id'];
         deleteBook($bookId);
-        header('Location: controller.php?action=page2');
+        header('Location: ../views/page2.php');
         break;
     default:
-        require_once 'views/page1.php';
+        require_once '../views/page1.php';
         break;
 }
 ?>

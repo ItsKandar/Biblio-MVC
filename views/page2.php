@@ -1,7 +1,7 @@
 <?php
 require_once 'header.php';
 ?>
-    <h1>Page de consultation</h1>
+    <h1>Consultation</h1>
     <table>
         <thead>
             <tr>
