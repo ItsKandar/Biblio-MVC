@@ -1,6 +1,3 @@
-<!-- ouvre /views/index.php -->
-
 <?php
-header('Location: views/index.php');
-exit();
+require_once 'controllers/controller.php';
 ?>

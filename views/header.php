@@ -10,13 +10,15 @@
         }
         body {
             background-image: url('banner.png');
+            background-color: grey;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
-        input[type="text"], input[type="number"], textarea {
+        input, textarea, select, option {
             color: black;
         }
+
     </style>
 </head>
 <body>

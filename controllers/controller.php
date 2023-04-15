@@ -1,35 +1,42 @@
 <?php
-require_once '../models/model.php';
-require_once '../views/header.php';
+require_once 'models/model.php';
+require_once 'views/header.php';
+
+session_start();
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'page3';
 
 switch ($action) {
     case 'page1':
-        require_once '../views/page1.php';
+        require_once 'views/page1.php';
         break;
     case 'page2':
         $books = getAllBooks();
-        require_once '../views/page2.php';
+        require_once 'views/page2.php';
         break;
     case 'page3':
-        require_once '../views/page3.php';
+        if (isset($_SESSION['selected_book'])) {
+            $book = $_SESSION['selected_book'];
+            unset($_SESSION['selected_book']);
+        }    
+        require_once 'views/page3.php';
         break;
-        
-    case 'select':
+
+    case 'select_book':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $bookId = $_POST['id'];
             $book = getBookById($bookId);
 
             if ($book) {
-                require_once '../views/page3.php'; // Incluez page3.php ici
+                $_SESSION['selected_book'] = $book; // Stocker le livre sélectionné dans la session
+                header('Location: views/index.php?action=page3');
             } else {
                 // Rediriger vers page3 si le livre n'est pas trouvé
-                header('Location: ../views/index.php?action=page3');
+                header('Location: views/index.php?action=page3');
             }
         } else {
             // Gérer le cas où la méthode n'est pas POST
-            header('Location: ../views/index.php?action=page3');
+            header('Location: views/index.php?action=page3');
         }
         break;
 
@@ -41,7 +48,7 @@ switch ($action) {
             $year = $_POST['year'];
             $summary = $_POST['summary'];
             modifyBook($id, $name, $author, $year, $summary);
-            header('Location: ../views/index.php?action=page2');
+            header('Location: views/index.php?action=page2');
             break;
         } else {
             // Gérer le cas où la méthode n'est pas POST
@@ -55,7 +62,7 @@ switch ($action) {
             $year = $_POST['year'];
             $summary = $_POST['summary'];
             addBook($name, $author, $year, $summary);
-            header('Location: ../views/index.php?action=page2');
+            header('Location: views/index.php?action=page2');
         } else {
             // Gérer le cas où la méthode n'est pas POST
         }
@@ -65,14 +72,13 @@ switch ($action) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $bookId = $_POST['book_id_delete']; // Utiliser $_POST['book_id_delete'] au lieu de $_GET['id']
             deleteBook($bookId);
-            header('Location: ../views/index.php?action=page2');
+            header('Location: views/index.php?action=page2');
             break;
         } else {
             // Gérer le cas où la méthode n'est pas POST
         }
         break;
         default:
-        header('Location: ../views/index.php?action=page3');
+        header('Location: views/index.php?action=page3');
         break;
 }
-?>
