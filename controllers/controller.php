@@ -2,7 +2,7 @@
 require_once '../models/model.php';
 require_once '../views/header.php';
 
-$action = isset($_GET['action']) ? $_GET['action'] : 'page1';
+$action = isset($_GET['action']) ? $_GET['action'] : 'page3';
 
 switch ($action) {
     case 'page1':
@@ -15,24 +15,64 @@ switch ($action) {
     case 'page3':
         require_once '../views/page3.php';
         break;
-    case 'modify':
-        $bookId = $_GET['id'];
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            modifyBook($bookId, $_POST['name'], $_POST['author'], $_POST['year'], $_POST['summary']);
-            header('Location: controller.php?action=page2');
-        } else {
+        
+    case 'select':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $bookId = $_POST['id'];
             $book = getBookById($bookId);
-            header('Location: ../views/index.php?action=page2');
-            break;
+
+            if ($book) {
+                require_once '../views/page3.php'; // Incluez page3.php ici
+            } else {
+                // Rediriger vers page3 si le livre n'est pas trouvé
+                header('Location: ../views/index.php?action=page3');
+            }
+        } else {
+            // Gérer le cas où la méthode n'est pas POST
+            header('Location: ../views/index.php?action=page3');
         }
         break;
-    case 'delete':
-        $bookId = $_GET['id'];
-        deleteBook($bookId);
-        header('Location: ../views/index.php?action=page2');
+
+    case 'modify':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $author = $_POST['author'];
+            $year = $_POST['year'];
+            $summary = $_POST['summary'];
+            modifyBook($id, $name, $author, $year, $summary);
+            header('Location: ../views/index.php?action=page2');
+            break;
+        } else {
+            // Gérer le cas où la méthode n'est pas POST
+        }
         break;
-    default:
-        require_once '../views/index.php?action=page1';
+
+   case 'add':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $name = $_POST['name'];
+            $author = $_POST['author'];
+            $year = $_POST['year'];
+            $summary = $_POST['summary'];
+            addBook($name, $author, $year, $summary);
+            header('Location: ../views/index.php?action=page2');
+        } else {
+            // Gérer le cas où la méthode n'est pas POST
+        }
+        break;
+
+    case 'delete':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $bookId = $_POST['book_id_delete']; // Utiliser $_POST['book_id_delete'] au lieu de $_GET['id']
+            deleteBook($bookId);
+            header('Location: ../views/index.php?action=page2');
+            break;
+        } else {
+            // Gérer le cas où la méthode n'est pas POST
+        }
+        break;
+        default:
+        header('Location: ../views/index.php?action=page3');
         break;
 }
 ?>
