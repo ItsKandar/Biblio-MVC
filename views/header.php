@@ -3,24 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Librairie</title>
-    <style>
-        * {
-            color : white;
-            text-align: center;
-        }
-        body {
-            background-image: url('banner.png');
-            background-color: grey;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        input, textarea, select, option {
-            color: black;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
