@@ -1,6 +1,6 @@
 <?php
-require_once 'header.php';
-require_once 'models/model.php';
+require_once '../views/header.php';
+require_once '../models/model.php';
 $books = getAllBooks();
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -40,18 +40,18 @@ if (session_status() == PHP_SESSION_NONE) {
     </form>
 
     <form action="../controllers/controller.php?action=modify" method="post">
-        <input type="hidden" name="id" id="mod_id" value="<?php echo isset($book) ? $book['id'] : ''; ?>">
+        <input type="hidden" name="id" id="mod_id" value="<?php echo isset($selectedBook) ? $selectedBook['id'] : ''; ?>">
         <label for="mod_name">Nom :</label>
-        <input type="text" name="name" id="mod_name" required value="<?php echo isset($book) ? $book['name'] : ''; ?>">
+        <input type="text" name="name" id="mod_name" required value="<?php echo isset($selectedBook) ? $selectedBook['name'] : ''; ?>">
         <br>
         <label for="mod_author">Auteur :</label>
-        <input type="text" name="author" id="mod_author" required value="<?php echo isset($book) ? $book['author'] : ''; ?>">
+        <input type="text" name="author" id="mod_author" required value="<?php echo isset($selectedBook) ? $selectedBook['author'] : ''; ?>">
         <br>
         <label for="mod_year">Année de publication :</label>
-        <input type="number" name="year" id="mod_year" required value="<?php echo isset($book) ? $book['year'] : ''; ?>">
+        <input type="number" name="year" id="mod_year" required value="<?php echo isset($selectedBook) ? $selectedBook['year'] : ''; ?>">
         <br>
         <label for="mod_summary">Résumé :</label>
-        <textarea name="summary" id="mod_summary" rows="4" cols="50" required><?php echo isset($book) ? $book['summary'] : ''; ?></textarea>
+        <textarea name="summary" id="mod_summary" rows="4" cols="50" required><?php echo isset($selectedBook) ? $selectedBook['summary'] : ''; ?></textarea>
         <br>
         <input type="submit" name="submit" value="Modifier">
     </form>

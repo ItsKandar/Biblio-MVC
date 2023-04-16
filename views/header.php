@@ -13,6 +13,7 @@
             background-color: grey;
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
         }
 
         input, textarea, select, option {
