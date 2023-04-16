@@ -1,15 +1,24 @@
 <main>
     <?php
+    /**
+    * Page de modification des livres
+    *
+    * Cette page permet d'ajouter, modifier et supprimer des livres dans la librairie.
+    */
+
     require_once '../views/header.php';
     require_once '../models/model.php';
     $books = getAllBooks();
 
+    // Démarrage de la session si elle n'est pas déjà démarrée
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     ?>
+        <!-- Titre de la page -->
         <h1>Modification</h1>
 
+        <!-- Formulaire d'ajout de livre -->
         <h2>Ajouter un livre</h2>
 
         <form action="../controllers/controller.php?action=add" method="post">
@@ -28,6 +37,7 @@
             <input type="submit" name="submit" value="Ajouter">
         </form>
 
+        <!-- Formulaire de modification de livre -->
         <h2>Modifier un livre</h2>
         <form action="../controllers/controller.php?action=select_book" method="post">
             <label for="book">Sélectionnez un livre :</label>
@@ -59,6 +69,7 @@
 
         <h2>Supprimer un livre</h2>
 
+        <!-- Formulaire de suppression de livre -->
         <form action="../controllers/controller.php?action=delete" method="post">
             <label for="book_id_delete">ID du livre à supprimer :</label>
             <input type="number" name="book_id_delete" id="book_id_delete" required>
