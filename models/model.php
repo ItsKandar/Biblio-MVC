@@ -6,11 +6,8 @@
 
 /**
  * Connecte à la base de données et retourne l'objet PDO.
- *
- * @return PDO L'objet PDO pour interagir avec la base de données.
- */
+*/
 function connectDb() {
-    // Remplacez les valeurs de connexion avec celles de votre base de données
     $host = "localhost";
     $dbname = "mvc";
     $user = "ItsKandar";
@@ -26,8 +23,6 @@ function connectDb() {
 
 /**
  * Récupère tous les livres de la base de données.
- *
- * @return array Un tableau contenant tous les livres.
  */
 function getAllBooks() {
     $db = connectDb();
@@ -38,11 +33,11 @@ function getAllBooks() {
 /**
  * Modifie un livre dans la base de données.
  *
- * @param int $id L'ID du livre à modifier.
- * @param string $name Le nouveau nom du livre.
- * @param string $author Le nouvel auteur du livre.
- * @param int $year La nouvelle année de publication du livre.
- * @param string $summary Le nouveau résumé du livre.
+ * $id L'ID du livre à modifier.
+ * $name Le nouveau nom du livre.
+ * $author Le nouvel auteur du livre.
+ * $year La nouvelle année de publication du livre.
+ * $summary Le nouveau résumé du livre.
  */
 function modifyBook($id, $name, $author, $year, $summary) {
     $pdo = connectDb();
@@ -59,10 +54,10 @@ function modifyBook($id, $name, $author, $year, $summary) {
 /**
  * Ajoute un livre dans la base de données.
  *
- * @param string $name Le nom du livre.
- * @param string $author L'auteur du livre.
- * @param int $year L'année de publication du livre.
- * @param string $summary Le résumé du livre.
+ * $name Le nom du livre.
+ * $author L'auteur du livre.
+ * $year L'année de publication du livre.
+ * $summary Le résumé du livre.
  */
 function addBook($name, $author, $year, $summary) {
     $pdo = connectDb();
@@ -77,9 +72,6 @@ function addBook($name, $author, $year, $summary) {
 
 /**
  * Supprime un livre de la base de données.
- *
- * @param int $id L'ID du livre à supprimer.
- * @return bool True si la suppression a réussi, false sinon.
  */
 function deleteBook($id) {
     $pdo = connectDb();
@@ -92,8 +84,7 @@ function deleteBook($id) {
 /**
  * Récupère un livre de la base de données en utilisant son ID.
  *
- * @param int $id L'ID du livre à récupérer.
- * @return array|false Le livre sous forme de tableau associatif, ou false si le livre n'a pas été trouvé.
+ * $id L'ID du livre à récupérer.
  */
 function getBookById($id) {
     $pdo = connectDb();
