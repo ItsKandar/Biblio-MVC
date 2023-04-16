@@ -4,8 +4,8 @@ function connectDb() {
     // Remplacez les valeurs de connexion avec celles de votre base de données
     $host = "localhost";
     $dbname = "mvc";
-    $user = "root";
-    $password = "";
+    $user = "ItsKandar";
+    $password = "AZERTY";
     
     try {
         $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
